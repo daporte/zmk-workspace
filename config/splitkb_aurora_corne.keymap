@@ -6,6 +6,7 @@
 #define LOWER   1
 #define RAISE   2
 #define NAV     3
+#define STENO   4
 
 
 #include "zmk-helpers/helper.h"
@@ -53,10 +54,10 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
 //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &kp TAB &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
+   &to STENO &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
    &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
-                  &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &kp RALT
+                  &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
                         >;
                 };
                 lower_layer {
@@ -86,6 +87,7 @@
                              &trans &trans   &trans   &trans   &trans    &trans
                         >;
                 };
+
                 nav_layer {
 // -----------------------------------------------------------------------------------------
 // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
@@ -97,6 +99,19 @@
    &trans    &trans &trans &trans &trans &trans      &trans &kp LEFT &trans &trans &kp RIGHT &trans
    &kp LSHFT &trans &trans &kp DOWN &kp UP &trans    &trans &trans &trans &trans &trans &trans
                            &trans &trans &trans      &trans &trans &trans
+                        >;
+                };
+                steno_layer {
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+                        bindings = <
+   &to DEFAULT &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
+   &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
+   &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &kp BSLH
+                  &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
                         >;
                 };
         };
