@@ -7,14 +7,43 @@
 #define RAISE   2
 #define NAV     3
 #define STENO   4
+#define CZECH   5
 
+#define HOST_OS 1
 
 #include "zmk-helpers/helper.h"
+#include "zmk-helpers/unicode-chars/czech.dtsi"
 
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left hand
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right hand
 
 #include "combos.dtsi"  // must be sources after HRM-combo hack
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+    ZMK_HOLD_TAP(NAME, \
+        flavor = "balanced"; \
+        tapping-term-ms = <280>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        require-prior-idle-ms = <150>; \
+        bindings = <HOLD>, <TAP>; \
+        hold-trigger-key-positions = <TRIGGER_POS>; \
+        hold-trigger-on-release; \
+    )
+#define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
+    MAKE_HRM(hm_combo_ ## NAME, &kp, TAP, SIDE THUMBS) \
+    ZMK_COMBO_6(NAME, &hm_combo_ ## NAME HOLD 0, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE)
+
+
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
+    ZMK_MOD_MORPH(NAME, \
+        mods = <(MOD_L ## MOD|MOD_R ## MOD)>; \
+        bindings = <BINDING1>, <BINDING2>; \
+    )
+
+
+SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
+SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
+
 
 
 / {
@@ -56,7 +85,7 @@
                         bindings = <
    &to STENO &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
-   &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
+   &to CZECH &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
                   &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
                         >;
                 };
@@ -112,6 +141,19 @@
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
    &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &kp BSLH
                   &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
+                        >;
+                };
+                czech_layer {
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+                        bindings = <
+   &trans &trans &trans &trans &trans &trans              &trans &trans  &trans     &trans   &trans    &trans
+   &kp ESC   &cs_ec &cs_sc &cs_cc &cs_zc &cs_ya           &cs_aa &cs_ia  &cs_ea     &cs_oa   &cs_ur    &trans
+   &to DEFAULT &trans &trans &trans &cs_ua &cs_nc              &cs_dc &cs_tc  &trans     &trans   &trans    &trans
+                  &trans &trans &trans                    &trans &trans &trans
                         >;
                 };
         };
