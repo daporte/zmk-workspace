@@ -15,7 +15,8 @@
 
 
 /* Horizontal combos - left hand */
-ZMK_COMBO(esc,   &kp ESC,      15 16,     0 , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(qmark,   &kp QMARK,      15 16,     0 , COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(excl,   &kp EXCL,      14 15,     0 , COMBO_TERM_FAST, COMBO_IDLE_FAST)
 //ZMK_COMBO(ret,   &kp RETURN,   LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 //ZMK_COMBO(mouse, &smart_mouse, LT3 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 //
