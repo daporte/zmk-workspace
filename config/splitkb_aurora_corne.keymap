@@ -48,7 +48,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 / {
     macros {
-        zed_em_kay: zed_em_kay {
+        switch_to_steno: switch_to_steno {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -56,6 +56,17 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                 <&macro_press &kp E &kp U &kp K &kp N &kp V>,
                 <&macro_release &kp E &kp U &kp K &kp N &kp V>,
                 <&macro_tap &to STENO> 
+                
+                ;
+        };
+        switch_from_steno: switch_from_steno {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = 
+                <&macro_press &kp E &kp U &kp K &kp N &kp V>,
+                <&macro_release &kp E &kp U &kp K &kp N &kp V>,
+                <&macro_tap &to DEFAULT> 
                 
                 ;
         };
@@ -98,7 +109,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                         bindings = <
    &to STENO &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
-   &zed_em_kay &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
+   &switch_to_steno &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
                   &to CZECH &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
                         >;
                 };
@@ -152,7 +163,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                         bindings = <
    &to DEFAULT &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
-   &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &to CZECH
+   &switch_from_steno &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &to CZECH
                   &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &to CZECH
                         >;
                 };
