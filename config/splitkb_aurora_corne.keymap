@@ -47,6 +47,19 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 
 / {
+    macros {
+        zed_em_kay: zed_em_kay {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = 
+                <&macro_press &kp E &kp U &kp K &kp N &kp V>,
+                <&macro_release &kp E &kp U &kp K &kp N &kp V>,
+                <&macro_tap &to STENO> 
+                
+                ;
+        };
+    };
     combos {
         //compatible = "zmk,combos";
         //combo_esc {
@@ -85,8 +98,8 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                         bindings = <
    &to STENO &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
-   &to CZECH &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
-                  &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
+   &zed_em_kay &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
+                  &to CZECH &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
                         >;
                 };
                 lower_layer {
@@ -139,8 +152,8 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                         bindings = <
    &to DEFAULT &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &kp DELETE
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
-   &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &kp BSLH
-                  &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &tog STENO
+   &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &to CZECH
+                  &kp LGUI &lt LOWER BKSP &hm LCTRL TAB           &hm RSFT SPACE &hm RALT RET &to CZECH
                         >;
                 };
                 czech_layer {
