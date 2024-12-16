@@ -77,8 +77,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                 = 
 
                 <&macro_press &kp E &kp U &kp K &kp T &kp N>,
-                <&macro_release &kp E &kp U &kp K &kp T &kp N>,
-                <&macro_tap &to DEFAULT>
+                <&macro_release &kp E &kp U &kp K &kp T &kp N>
                 
                 ;
         };
@@ -89,8 +88,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                 = 
 
                 <&macro_press &kp E &kp U &kp K &kp W &kp V>,
-                <&macro_release &kp E &kp U &kp K &kp W &kp V>,
-                <&macro_tap &to DEFAULT>
+                <&macro_release &kp E &kp U &kp K &kp W &kp V>
                 
                 ;
         };
