@@ -115,14 +115,6 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                 ;
         };
     };
-    combos {
-        compatible = "zmk,combos";
-        combo_esc {
-            timeout-ms = <50>;
-            key-positions = <12 24>;
-            bindings = <&switch_from_steno_math_eq>;
-        };
-    };
         behaviors {
              /omit-if-no-ref/ num_word: num_word {
                 compatible = "zmk,behavior-auto-layer";
