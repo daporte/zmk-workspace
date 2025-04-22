@@ -8,7 +8,8 @@
 #define RAISE   2
 #define NAV     3
 #define STENO   4
-#define CZECH   5
+#define INKSCAPE 5
+#define CZECH   6
 
 #define HOST_OS 1
 
@@ -62,7 +63,7 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                 <&macro_press &kp H &kp W &kp N &kp Z>,
                 <&macro_release &kp H &kp W &kp N &kp Z>,
                 <&macro_tap &to STENO>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(128,100,100)>
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(107,100,60)>
                 ;
         };
         switch_from_steno: switch_from_steno {
@@ -73,7 +74,7 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                 <&macro_press &kp H &kp W &kp N &kp Z>,
                 <&macro_release &kp H &kp W &kp N &kp Z>,
                 <&macro_tap &to DEFAULT>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(300,100,50)>
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(8,100,100)>
                 ;
         };
         switch_to_inkscape: switch_to_inkscape {
@@ -83,8 +84,8 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                 = 
                 <&macro_press &kp H &kp W &kp N &kp Z &kp S>,
                 <&macro_release &kp H &kp W &kp N &kp Z &kp S>,
-                <&macro_tap &to STENO>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(128,0,100)>
+                <&macro_tap &to INKSCAPE>,
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(250,100,100)>
                 ;
         };
         switch_to_steno_layer: switch_to_steno_layer {
@@ -93,7 +94,7 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
             bindings
                 = 
                 <&macro_tap &to STENO>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(128,100,100)>
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(107,100,60)>
                 ;
         };
         switch_from_steno_layer: switch_from_steno_layer {
@@ -102,7 +103,7 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
             bindings
                 = 
                 <&macro_tap &to DEFAULT>,
-                <&macro_tap &rgb_ug RGB_COLOR_HSB(300,100,50)>
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(8,100,100)>
                 ;
         };
         switch_from_steno_math: switch_from_steno_math {
@@ -191,11 +192,6 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                 };
 
                 nav_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &tog NAV  &trans &trans &trans &trans &trans      &trans &trans &trans &trans &trans &trans
    &trans    &trans &trans &trans &trans &trans      &trans &kp LEFT &trans &trans &kp RIGHT &trans
@@ -204,24 +200,22 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                         >;
                 };
                 steno_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
    &switch_from_steno_layer &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &switch_from_steno
-   &kp LCTRL  &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
+   &kp ESC  &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
    &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &kp BSLH
                   &kp LGUI &kp BKSP &kp TAB           &kp SPACE &kp RET &to CZECH
                         >;
                 };
+                inkscape_layer {
+                        bindings = <
+   &switch_from_steno_layer &kp M &kp H &kp T &kp N &kp S   &kp F &kp G  &kp C     &kp R   &kp L    &switch_from_steno
+   &kp LCTRL  &kp A &kp O &kp E &kp U &kp W           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
+   &kp LSHFT &kp Z &kp Q &kp J &kp K &kp V        &kp B &kp M  &kp W     &kp V   &kp Z    &kp BSLH
+                  &kp LGUI &kp BKSP &kp TAB           &kp SPACE &kp RET &to CZECH
+                        >;
+                };
                 czech_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
    &trans &trans &trans &trans &trans &trans              &trans &trans  &trans     &trans   &trans    &trans
    &kp ESC   &cs_ec &cs_sc &cs_cc &cs_zc &cs_ya           &cs_aa &cs_ia  &cs_ea     &cs_oa   &cs_ur    &trans
