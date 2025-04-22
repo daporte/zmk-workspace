@@ -106,28 +106,6 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                 <&macro_tap &rgb_ug RGB_COLOR_HSB(8,100,100)>
                 ;
         };
-        switch_from_steno_math: switch_from_steno_math {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = 
-
-                <&macro_press &kp H &kp W &kp N &kp Z &kp FSLH &kp D>,
-                <&macro_release &kp H &kp W &kp N &kp Z &kp FSLH &kp D>
-                
-                ;
-        };
-        switch_from_steno_math_eq: switch_from_steno_math_eq {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = 
-
-                <&macro_press &kp H &kp W &kp N &kp Z &kp FSLH &kp D &kp M>,
-                <&macro_release &kp H &kp W &kp N &kp Z &kp FSLH &kp D &kp M>
-                
-                ;
-        };
     };
         behaviors {
              /omit-if-no-ref/ num_word: num_word {
@@ -210,7 +188,7 @@ ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscap
                 inkscape_layer {
                         bindings = <
    &switch_from_steno_layer &kp M &kp H &kp T &kp N &kp S   &kp F &kp G  &kp C     &kp R   &kp L    &switch_from_steno
-   &kp LCTRL  &kp A &kp O &kp E &kp U &kp W           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
+   &hm LCTRL ESC &kp A &kp O &kp E &kp U &kp W           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
    &kp LSHFT &kp Z &kp Q &kp J &kp K &kp V        &kp B &kp M  &kp W     &kp V   &kp Z    &kp BSLH
                   &kp LGUI &kp BKSP &kp TAB           &kp SPACE &kp RET &to CZECH
                         >;
