@@ -45,6 +45,8 @@
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
+ZMK_TAP_DANCE(inkscape_dance, bindings = <&switch_to_steno>, <&switch_to_inkscape>;
+              tapping-term-ms = <200>;)
 
 &led_strip {
     chain-length = <27>;
@@ -72,6 +74,17 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
                 <&macro_release &kp H &kp W &kp N &kp Z>,
                 <&macro_tap &to DEFAULT>,
                 <&macro_tap &rgb_ug RGB_COLOR_HSB(300,100,50)>
+                ;
+        };
+        switch_to_inkscape: switch_to_inkscape {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = 
+                <&macro_press &kp H &kp W &kp N &kp Z &kp S>,
+                <&macro_release &kp H &kp W &kp N &kp Z &kp S>,
+                <&macro_tap &to STENO>,
+                <&macro_tap &rgb_ug RGB_COLOR_HSB(128,0,100)>
                 ;
         };
         switch_to_steno_layer: switch_to_steno_layer {
@@ -143,7 +156,7 @@ SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
 //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &switch_to_steno_layer &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &switch_to_steno
+   &switch_to_steno_layer &kp SQT &kp COMMA &kp DOT &kp P &kp Y   &kp F &kp G  &kp C     &kp R   &kp L    &inkscape_dance
    &kp ESC   &kp A &kp O &kp E &kp U &kp I           &kp D &kp H  &kp T     &kp N   &kp S    &kp FSLH
    &kp LSHFT &kp SEMI &kp Q &kp J &kp K &kp X        &kp B &kp M  &kp W     &kp V   &kp Z    &num_word RAISE
                   &to CZECH &hm RSFT BKSP &hm LCTRL TAB           &lt LOWER SPACE &hm RALT RET &tog STENO
